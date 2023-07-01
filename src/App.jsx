@@ -7,7 +7,7 @@ function App() {
   const [modal,setModal] = useState(false);
   const [user,setUser] = useState({});
   const [id, setId] = useState(1)
-  const [loading, setLoading] = useState(0)
+  const [loading, setLoading] = useState(false)
   
   async function getUsers(){
     try {
@@ -31,11 +31,7 @@ function App() {
   };
 
   function clickModal(e) {
-    if (modal === true) {
-      setModal(false)
-    }else{
-      setModal(true)
-    }
+    modal ? setModal(false) : setModal(true)
   }
 
 
@@ -44,7 +40,7 @@ function App() {
     getUsers()
     getUser()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id])
+  }, [id,modal])
 
   return(
     <>
@@ -72,10 +68,10 @@ function App() {
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
                 <td>
-                  <button type="button" className="btn btn-primary" onClick={function () {
+                  <button type="button" className="btn btn-primary" onClick={() => {
                     setModal(true)
                     setId(user.id)
-                  }}> Show</button>
+                  }}>Show</button>
                 </td>
               </tr>
             )

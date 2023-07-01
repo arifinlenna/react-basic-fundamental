@@ -1,7 +1,7 @@
-import React, {CSSProperties, useEffect, useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import BeatLoader from "react-spinners/BeatLoader";
 
-const override: CSSProperties = {
+const override= {
     display: "block",
     margin: "0 auto",
     borderColor: "red",
@@ -13,33 +13,34 @@ function insideContent(e) {
 }
 
 export default function Modal(params) {
+    console.log(params.loading);
     let [loading, setLoading] = useState(true);
 
     useEffect(()=>{
         setLoading(params.loading)
-    },[params.loading])
+    },[params])
     return(
         <>
         {
-            params.show === true && params.id >= 1 &&
+            params.show === true &&
             <div>
-                {
-                    loading === true &&
-                    <div className="m-auto z-1 h-100 w-100 position-fixed d-block" onClick={params.onClick}>
+                { loading &&
+                <div className="m-auto z-1 h-100 w-100 position-fixed d-block">
                     <div className="card overflow-auto h-100 w-100" style={{ backgroundColor: "rgba(0,0,0,0.4)" }}>
                         <div className="card-body w-50 m-auto">
-                            <BeatLoader
+                            <BeatLoader 
                                 color="#36d7b7"
-                                cssOverride={{override}}
                                 loading={loading}
+                                cssOverride={override}
                                 speedMultiplier={1}
                             />
                         </div>
                     </div>
                 </div>
+                    
                 }
                 {
-                    loading === false &&
+                    !loading &&
                     <div className="m-auto z-1 h-100 w-100 position-fixed d-block" onClick={params.onClick}>
                         <div className="card overflow-auto h-100 w-100" style={{ backgroundColor: "rgba(0,0,0,0.4)" }}>
                             <div className="card-body w-50 m-auto">
@@ -54,7 +55,6 @@ export default function Modal(params) {
                     </div>
                 }
             </div>
-            
         }
         </>
     )
