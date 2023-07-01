@@ -1,41 +1,89 @@
-import Card from "./components/Card";
+import axios from "axios";
+import { useEffect, useState } from "react"
+import Modal from "./components/Modal";
 
-function App(props) {
-  const datas = {
-    0:{
-      "image":"http://placekitten.com/g/300/200",
-      "title":"The first Post",
-      "date":"Published 06 Feb,2020"
-    },
-    1:{
-      "image":"http://placekitten.com/300/200",
-      "title":"The first Post",
-      "date":"Published 06 Feb,2020"
-    },
-    2:{
-      "image":"http://placekitten.com/g/300/200",
-      "title":"The first Post",
-      "date":"Published 06 Feb,2020"
-    },
+function App() {
+  const [users,setUsers] = useState([]);
+  const [modal,setModal] = useState(false);
+  const [user,setUser] = useState({});
+  const [id, setId] = useState(1)
+  const [loading, setLoading] = useState(0)
+  
+  async function getUsers(){
+    try {
+      let response = await axios.get('users');
+      setUsers(response.data);
+    } catch (error) {
+      console.log(JSON.stringify(error));
+    }
+  };
+
+  async function getUser(){
+    setLoading(true)
+    try {
+      let response = await axios.get('users/'+id);
+      setUser(response.data);
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      console.log(JSON.stringify(error));
+    }
+  };
+
+  function clickModal(e) {
+    if (modal === true) {
+      setModal(false)
+    }else{
+      setModal(true)
+    }
   }
 
-  return (
+
+
+  useEffect(()=>{
+    getUsers()
+    getUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
+
+  return(
     <>
-      <div className="py-4">
-        <h1 className="px-5">The Posts</h1>
-        <hr />
-        <div className="container">
-          <div className="row">
-            {
-              Object.keys(datas).map((index)=>(
-                <div className="col-md-4" key={index}>
-                  <Card image={datas[index].image} title={datas[index].title} date={datas[index].date}/>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
+    <Modal onClick={clickModal} show={modal} user={user} id={id} loading={loading}/>
+
+    <div className="container py-4">
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Button</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            users.map((user,index) => (
+              <tr key={index}>
+                <th scope="row">{user.id}</th>
+                <td>{user.name}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.phone}</td>
+                <td>
+                  <button type="button" className="btn btn-primary" onClick={function () {
+                    setModal(true)
+                    setId(user.id)
+                  }}> Show</button>
+                </td>
+              </tr>
+            )
+          )}
+        </tbody>
+      </table>
+    </div>
+    
     </>
   )
 }

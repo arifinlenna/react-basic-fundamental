@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "react-spinners": "^0.13.8"
   }
 }
