@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import App from './App';
-import FormInput from './components/FormInput';
+import App from './App';
+// import FormInput from './components/FormInput';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 import 'bootstrap'
@@ -13,8 +13,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App name="arifin" age="23"/> */}
-    <FormInput/>
+    <App name="arifin" age="23"/>
+    {/* <FormInput/> */}
   </React.StrictMode>
 );
 
