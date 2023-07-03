@@ -13,11 +13,10 @@ function insideContent(e) {
 }
 
 export default function Modal(params) {
-    console.log(params.loading);
     let [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        setLoading(params.loading)
+        setLoading(params.loading.LoadingUser)
     },[params])
     return(
         <>

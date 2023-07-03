@@ -1,23 +1,26 @@
-import {
-    BrowserRouter, Route, Routes,
-    // RouterProvider,
-    // useLoaderData,
-} from "react-router-dom";
+import { Routes ,Route } from 'react-router-dom';
 import React from 'react'
 import UsersTable from "../views/UsersTable";
+import About from '../views/About';
+import Home from '../views/Home'
 
-
-function router(params) {
+function routes() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path= "/" element={<UsersTable/>}/>
-                <Route path= "/about">
-                    <UsersTable/>
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route 
+                path= "/" 
+                element={<Home/>}
+            />
+            <Route 
+                path= "/about" 
+                element={<About/>}
+            />
+            <Route 
+                path= "/UserTable" 
+                element={<UsersTable/>}
+            />
+        </Routes>
     )
 }
 
-export default router
+export default routes
