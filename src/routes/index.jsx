@@ -3,6 +3,7 @@ import React from 'react'
 import UsersTable from "../views/UsersTable";
 import About from '../views/About';
 import Home from '../views/Home'
+import FormInputFunction from '../views/FormInputFunction';
 
 function routes() {
     return (
@@ -18,6 +19,10 @@ function routes() {
             <Route 
                 path= "/UserTable" 
                 element={<UsersTable/>}
+            />
+            <Route 
+                path= "/FormInput" 
+                element={<FormInputFunction/>}
             />
         </Routes>
     )

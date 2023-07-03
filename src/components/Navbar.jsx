@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 export default function Navbar() {
     return (
@@ -15,6 +15,7 @@ export default function Navbar() {
                         <NavLink className="nav-link" to={"/"}>Home</NavLink>
                         <NavLink className="nav-link" to={"/about"}>About</NavLink>
                         <NavLink className="nav-link" to={"/UserTable"}>User table</NavLink>
+                        <NavLink className="nav-link" to={"/FormInput"}>FormInput</NavLink>
                     </div>
                     </div>
                 </div>
