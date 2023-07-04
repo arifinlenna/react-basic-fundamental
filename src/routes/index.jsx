@@ -2,7 +2,8 @@ import { Routes ,Route } from 'react-router-dom';
 import React from 'react'
 import UsersTable from "../views/UsersTable";
 import About from '../views/About';
-import Home from '../views/Home'
+import Home from '../views/Home';
+import Login from '../views/auth/Login';
 import FormInputFunction from '../views/FormInputFunction';
 import Navbar from '../components/Navbar';
 import NotFound from '../views/NotFound';
@@ -44,6 +45,14 @@ function routes() {
                         <Navbar>
                             <FormInputFunction/>
                         </Navbar>
+                    </>
+                }
+            />
+            <Route
+                path='/login'
+                element={
+                    <>
+                        <Login/>
                     </>
                 }
             />
