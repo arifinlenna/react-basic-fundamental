@@ -16,6 +16,7 @@ export default function Navbar(props) {
                         <NavLink className="nav-link" to={"/about"}>About</NavLink>
                         <NavLink className="nav-link" to={"/UserTable"}>User table</NavLink>
                         <NavLink className="nav-link" to={"/FormInput"}>FormInput</NavLink>
+                        <NavLink className="nav-link" to={"/Users"}>Users</NavLink>
                     </div>
                     </div>
                 </div>
