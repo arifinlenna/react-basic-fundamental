@@ -70,7 +70,10 @@ function UsersTable() {
 
   return(
     <>
-    <Modal onClick={clickModal} show={modal} user={user} id={id} loading={loading}/> 
+      <Modal onClick={clickModal} show={modal} user={user} id={id} loading={loading}>
+        <li className="list-group-item">arifin</li>
+      </Modal> 
+
       <div className="container py-4">
         <table className="table">
           <thead>

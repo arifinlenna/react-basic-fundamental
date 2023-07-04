@@ -1,9 +1,9 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-export default function Navbar() {
+export default function Navbar(props) {
     return (
-        <div>
+        <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
                     <NavLink className="navbar-brand" to={"/"}>Application</NavLink>
@@ -20,6 +20,9 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-        </div>
+            <div className="py-4">
+                {props.children}
+            </div>
+        </>
     )
 }

@@ -4,25 +4,56 @@ import UsersTable from "../views/UsersTable";
 import About from '../views/About';
 import Home from '../views/Home'
 import FormInputFunction from '../views/FormInputFunction';
+import Navbar from '../components/Navbar';
+import NotFound from '../views/NotFound';
 
 function routes() {
     return (
         <Routes>
-            <Route 
-                path= "/" 
-                element={<Home/>}
-            />
+            <Route path= "/" element={
+                <>
+                    <Navbar>
+                        <Home/>
+                    </Navbar>
+                </>
+            }/>
             <Route 
                 path= "/about" 
-                element={<About/>}
+                element={
+                    <>
+                        <Navbar>
+                            <About/>
+                        </Navbar>
+                    </>
+                }
             />
             <Route 
                 path= "/UserTable" 
-                element={<UsersTable/>}
+                element={
+                    <>
+                        <Navbar>
+                            <UsersTable/>
+                        </Navbar>
+                    </>
+                }
             />
             <Route 
                 path= "/FormInput" 
-                element={<FormInputFunction/>}
+                element={
+                    <>
+                        <Navbar>
+                            <FormInputFunction/>
+                        </Navbar>
+                    </>
+                }
+            />
+            <Route
+            path= "*" 
+                element={
+                    <>
+                        <NotFound/>
+                    </>
+                }
             />
         </Routes>
     )

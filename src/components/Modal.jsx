@@ -18,6 +18,7 @@ export default function Modal(params) {
     useEffect(()=>{
         setLoading(params.loading.LoadingUser)
     },[params])
+
     return(
         <>
         {
@@ -44,6 +45,7 @@ export default function Modal(params) {
                             <li className="list-group-item">{params.user.username}</li>
                             <li className="list-group-item">{params.user.email}</li>
                             <li className="list-group-item">{params.user.phone}</li>
+                            {params.children}
                         </ul>
                         </div>
                     </div>
