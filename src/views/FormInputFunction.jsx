@@ -24,7 +24,7 @@ function FormInputFunction(params) {
 
     return(
         <>
-            <div className="p-4 ">
+            <div className="p-4">
                 <div className="row">
                     <div className="col-md-4">
                         <div className="card">

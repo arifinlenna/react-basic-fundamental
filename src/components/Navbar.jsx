@@ -12,9 +12,9 @@ export default function Navbar(props) {
         setTheme(e.target.value)
     }
     return (
-        <>
-            <div className={"vh-100 " + (getThemes === 'dark' ? 'bg-dark' : 'bg-light')}>
-                <nav className="navbar navbar-expand-lg">
+        <div>
+            <div className={"h-100 " + (getThemes === 'dark' ? 'bg-dark' : 'bg-light')}>
+                <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
                         <NavLink className="navbar-brand" to={"/"}>Application</NavLink>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,12 +35,12 @@ export default function Navbar(props) {
                         </div>
                     </div>
                 </nav>
-                <div>
-                    <div className="py-4">
+                <div style={{ minHeight: '100vh' }}>
+                    <div className="py-4" data-bs-theme={getThemes}>
                         {props.children}
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

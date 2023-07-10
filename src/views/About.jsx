@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {authUser, loadingState,textState} from '../store'
+import {authUser, getTheme, loadingState,textState} from '../store'
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 export default function About() {
@@ -9,6 +9,7 @@ export default function About() {
     const onChange = (event) => {
         setText(event.target.value);
     };
+    const getThemes = useRecoilValue(getTheme)
 
     function loadingTimeout(params) {
         setLoading(true)
@@ -20,14 +21,14 @@ export default function About() {
     },[])
 
     return(
-        <div className='container'>
+        <div className='container' data-bs-theme={getThemes}>
             {authUserData}
             <br/>
             <input type="text" value={text} onChange={onChange} />
             {
-                loading === false ? <div>loading....</div> : <h1>params</h1> 
+                loading === false ? <div className={(getThemes === 'dark' ?'text-light': 'text-dark' )}>loading....</div> : <h1 className={(getThemes === 'dark' ?'text-light': 'text-dark' )}>params</h1> 
             }
-            {text}
+            <p className={(getThemes === 'dark' ?'text-light': 'text-dark' )}>{text}</p>
         </div>
     )
 }
