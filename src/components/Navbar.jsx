@@ -1,12 +1,12 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import { useRecoilState, useRecoilValue} from 'recoil';
-import { getTheme, themeState } from '../store';
+import { Authenticated, getTheme, themeState } from '../store';
 
 export default function Navbar(props) {
     const [theme, setTheme] = useRecoilState(themeState)
     const getThemes = useRecoilValue(getTheme)
-    
+    const {check} = useRecoilValue(Authenticated)
 
     function changeTheme(e) {
         setTheme(e.target.value)
@@ -20,19 +20,30 @@ export default function Navbar(props) {
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div className="navbar-nav">
-                                <NavLink className="nav-link" to={"/"}>Home</NavLink>
-                                <NavLink className="nav-link" to={"/about"}>About</NavLink>
-                                <NavLink className="nav-link" to={"/UserTable"}>User table</NavLink>
-                                <NavLink className="nav-link" to={"/FormInput"}>FormInput</NavLink>
-                                <NavLink className="nav-link" to={"/Users"}>Users</NavLink>
-                                <select className="nav-link" aria-label="themes" value={theme} onChange={changeTheme}>
-                                    <option value="dark">dark</option>
-                                    <option value="light">light</option>
-                                </select>
+                        {
+                            check 
+                            ? 
+                            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                <div className="navbar-nav">
+                                    <NavLink className="nav-link" to={"/"}>Home</NavLink>
+                                    <NavLink className="nav-link" to={"/about"}>About</NavLink>
+                                    <NavLink className="nav-link" to={"/UserTable"}>User table</NavLink>
+                                    <NavLink className="nav-link" to={"/FormInput"}>FormInput</NavLink>
+                                    <NavLink className="nav-link" to={"/Users"}>Users</NavLink>
+                                    <select className="nav-link" value={theme} onChange={changeTheme}>
+                                        <option value="dark">dark</option>
+                                        <option value="light">light</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                            :
+                            <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                                <div className="navbar-nav">
+                                    <NavLink className="nav-link" to={"/login"}>Login</NavLink>
+                                    <NavLink className="nav-link" to={"/register"}>Register</NavLink>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </nav>
                 <div style={{ minHeight: '100vh' }}>

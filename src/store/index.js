@@ -32,6 +32,16 @@ const getTheme = selector({
   }
 })
 
+const Authenticated = atom({
+  key: 'Authenticated', // unique ID (with respect to other atoms/selectors)
+  default: {
+    check: true,
+    user: {
+      name: "Nur Arifin"
+    }
+  },
+})
 
 
-export {authUser,loadingState, textState,themeState,getTheme}
+
+export {authUser,loadingState, textState,themeState,getTheme,Authenticated}

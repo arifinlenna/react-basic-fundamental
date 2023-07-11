@@ -1,4 +1,4 @@
-import { Routes ,Route } from 'react-router-dom';
+import { Routes ,Route, BrowserRouter } from 'react-router-dom';
 import React from 'react'
 import UsersTable from "../views/UsersTable";
 import About from '../views/About';
@@ -9,84 +9,98 @@ import UsersShow from '../views/users/Show';
 import FormInputFunction from '../views/FormInputFunction';
 import Navbar from '../components/Navbar';
 import NotFound from '../views/NotFound';
+import Register from '../views/auth/Register';
+import AuthenticatedMiddleware from '../middlewares/authenticated';
+import GuestMiddleware from '../middlewares/guest';
 
 function routes() {
     return (
-        <Routes>
-            <Route path= "/" element={
-                <>
-                    <Navbar>
-                        <Home/>
-                    </Navbar>
-                </>
-            }/>
-            <Route 
-                path= "/about" 
-                element={
-                    <>
+        <BrowserRouter>
+            <Routes>
+                <Route path= "/" element={
+                    <AuthenticatedMiddleware>
                         <Navbar>
-                            <About/>
+                            <Home/>
                         </Navbar>
-                    </>
-                }
-            />
-            <Route 
-                path= "/UserTable" 
-                element={
-                    <>
-                        <Navbar>
-                            <UsersTable/>
-                        </Navbar>
-                    </>
-                }
-            />
-            <Route 
-                path= "/FormInput" 
-                element={
-                    <>
-                        <Navbar>
-                            <FormInputFunction/>
-                        </Navbar>
-                    </>
-                }
-            />
-            <Route
-                path='/login'
-                element={
-                    <>
-                        <Login/>
-                    </>
-                }
-            />
-            <Route
-                path='/Users'
-                element={
-                    <>
-                        <Navbar>
-                            <Users/>
-                        </Navbar>
-                    </>
-                }
-            />
-            <Route
-                path='/Users/:id'
-                element={
-                    <>
-                        <Navbar>
-                            <UsersShow/>
-                        </Navbar>
-                    </>
-                }
-            />
-            <Route
-            path= "*" 
-                element={
-                    <>
-                        <NotFound/>
-                    </>
-                }
-            />
-        </Routes>
+                    </AuthenticatedMiddleware>
+                }/>
+                <Route 
+                    path= "/about" 
+                    element={
+                        <AuthenticatedMiddleware>
+                            <Navbar>
+                                <About/>
+                            </Navbar>
+                        </AuthenticatedMiddleware>
+                    }
+                />
+                <Route 
+                    path= "/UserTable" 
+                    element={
+                        <AuthenticatedMiddleware>
+                            <Navbar>
+                                <UsersTable/>
+                            </Navbar>
+                        </AuthenticatedMiddleware>
+                    }
+                />
+                <Route 
+                    path= "/FormInput" 
+                    element={
+                        <AuthenticatedMiddleware>
+                            <Navbar>
+                                <FormInputFunction/>
+                            </Navbar>
+                        </AuthenticatedMiddleware>
+                    }
+                />
+                <Route
+                    path='/Users'
+                    element={
+                        <AuthenticatedMiddleware>
+                            <Navbar>
+                                <Users/>
+                            </Navbar>
+                        </AuthenticatedMiddleware>
+                    }
+                />
+                <Route
+                    path='/Users/:id'
+                    element={
+                        <AuthenticatedMiddleware>
+                            <Navbar>
+                                <UsersShow/>
+                            </Navbar>
+                        </AuthenticatedMiddleware>
+                    }
+                />
+
+                <Route
+                    path='/login'
+                    element={
+                        <GuestMiddleware>
+                            <Login/>
+                        </GuestMiddleware>
+                    }
+                />
+                <Route
+                    path='/register'
+                    element={
+                        <GuestMiddleware>
+                            <Register/>
+                        </GuestMiddleware>
+                    }
+                />
+                <Route
+                path= "*" 
+                    element={
+                        <>
+                            <NotFound/>
+                        </>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
     )
 }
 

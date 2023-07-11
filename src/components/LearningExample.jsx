@@ -3,7 +3,6 @@ import React,{ Component } from 'react'
 
 class LearningExample extends Component{
   constructor(props){
-    console.log(props);
     super(props);
     this.a = {color: "red"};
     this.InputText = this.InputText.bind(this);

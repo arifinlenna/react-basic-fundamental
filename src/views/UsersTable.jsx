@@ -34,7 +34,6 @@ function UsersTable() {
         ...loading,
         LoadingUsers:false
       })
-      console.log(JSON.stringify(error));
     }
   };
 
@@ -52,7 +51,6 @@ function UsersTable() {
       setLoading({
         LoadingUser:false
       })
-      console.log(JSON.stringify(error));
     }
   };
 

@@ -13,16 +13,17 @@ export default function About() {
 
     function loadingTimeout(params) {
         setLoading(true)
-        // console.log('ha');
     }
 
     useEffect(()=>{
         setTimeout(loadingTimeout,5000)
-    },[])
+    })
 
     return(
         <div className='container' data-bs-theme={getThemes}>
-            {authUserData}
+            <span className={(getThemes === 'dark' ?'text-light': 'text-dark' )}>
+                {authUserData}
+            </span>
             <br/>
             <input type="text" value={text} onChange={onChange} />
             {
